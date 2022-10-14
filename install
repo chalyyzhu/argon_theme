@@ -1,64 +1,16 @@
 #!/bin/bash
 
 opkg update
+clear
 
 wget -O config.ipk https://github.com/chalyyzhu/argon_theme/raw/main/luci-app-argon-config_0.8-beta_all.ipk
+echo "[+] install argon config.."
 opkg install config.ipk
+
 wget -O argon.ipk https://github.com/chalyyzhu/argon_theme/raw/main/luci-theme-argon-master_2.2.9.4_all.ipk
+echo "[+] install argon theme.."
 opkg install argon.ipk
 
-cat > /usr/lib/lua/luci/view/themes/argon/footer.htm << EOF
-<%#
-	Argon is a clean HTML5 theme for LuCI. It is based on luci-theme-material Argon Template
-
-	luci-theme-argon
-	Copyright 2020 Jerrykuku <jerrykuku@qq.com>
-
-	Have a bug? Please create an issue here on GitHub!
-	https://github.com/jerrykuku/luci-theme-argon/issues
-
-	luci-theme-material: 
-	Copyright 2015 Lutty Yang <lutty@wcan.in>
-	
-	Agron Theme
-	https://demos.creative-tim.com/argon-dashboard/index.html 
-
-	Licensed to the public under the Apache License 2.0 
--%>
-
-<% local ver = require "luci.version" %>
-</div>
-<footer class="mobile-hide">
-	<div>
-		<a class="luci-link" href="https://github.com/openwrt/luci">Powered by <%= ver.luciname %> (<%= ver.luciversion %>)</a> /
-						<a href="https://github.com/jerrykuku/luci-theme-argon">ArgonTheme v2.2.9.4</a> /
-						<%= ver.distversion %>
-		<ul class="breadcrumb pull-right" id="modemenu" style="display:none"></ul>
-	</div>
-</footer>
-</div>
-</div>
-<script>
-	// thanks for Jo-Philipp Wich <jow@openwrt.org>
-	var luciLocation = <%= luci.http.write_json(luci.dispatcher.context.path) %>;
-	var winHeight = $(window).height();
-	$(window).resize(function () {
-		var winWidth = $(window).width()
-		if(winWidth < 600){
-			var newHeight = $(this).height();
-			var keyboradHeight = newHeight - winHeight;
-			$(".ftc").css("bottom", keyboradHeight + 30);
-		}
-	})
-</script>
-
-<div id="tempcpu"></div>
-<div id="cpuusage"></div>
-
-<script type="text/javascript">L.require('menu-argon')</script>
-</body>
-</html>
-
-EOF
+wget -O /usr/lib/lua/luci/view/themes/argon/footer.htm https://github.com/chalyyzhu/argon_theme/raw/main/luci/footer.htm
 
 echo "[+] INSTALLATION ARGON THEME SUCESS.."
