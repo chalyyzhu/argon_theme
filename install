@@ -11,6 +11,6 @@ wget -O argon.ipk https://github.com/chalyyzhu/argon_theme/raw/main/luci-theme-a
 echo "[+] install argon theme.."
 opkg install argon.ipk
 
-wget -O /usr/lib/lua/luci/view/themes/argon/footer.htm https://github.com/chalyyzhu/argon_theme/raw/main/luci/footer.htm
+wget -O /usr/lib/lua/luci/view/themes/argon/footer.htm https://raw.githubusercontent.com/chalyyzhu/argon_theme/main/footer.htm
 
 echo "[+] INSTALLATION ARGON THEME SUCESS.."
